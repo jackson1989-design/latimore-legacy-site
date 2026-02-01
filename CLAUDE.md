@@ -48,6 +48,7 @@ latimore-legacy-site/
 
 - All pages use HTML5 doctype with `lang="en"` and viewport meta tag
 - Each page includes an SEO-focused `<meta name="description">` tag
+- Only `index.html` has a `<meta name="keywords">` tag; other pages omit it
 - Semantic HTML5 elements: `<header>`, `<nav>`, `<section>`, `<footer>`
 - Consistent header/nav/footer structure across all pages
 - Active page indicated by `class="active"` on the corresponding `<nav>` link
@@ -56,18 +57,21 @@ latimore-legacy-site/
 
 Classes follow a descriptive, component-based pattern (not BEM, closer to Bootstrap conventions):
 
-- Layout: `.hero`, `.hero-content`, `.services-grid`, `.about-section`, `.mission-section`
+- Layout: `.hero`, `.hero-content`, `.services-grid`
 - Components: `.service-card`, `.testimonial`, `.author`, `.logo`
 - Interactive: `.btn-primary`, `.active`
-- Page-specific: `.education-intro`, `.topics-grid`, `.topic-card`, `.resources`
+
+Note: `about.html` and `education.html` sections use plain `<section>` tags without classes. The education page reuses `.services-grid` and `.service-card` for its topic cards.
 
 ### Navigation Menu (6 items)
 
 ```
-Home | About | Services | Education Hub | Why Choose Us | Contact
+Home | About | Services | Education | Why Choose Us | Contact
 ```
 
 The nav appears in the same order on every page. Mark the current page with `class="active"`.
+
+Note: `index.html` does NOT currently set `class="active"` on the Home link, while `about.html`, `services.html`, and `education.html` do mark their respective links. This is an inconsistency in the existing code.
 
 ### Footer Pattern
 
@@ -117,6 +121,8 @@ When creating a new HTML page:
 1. **No CSS exists yet** - `assets/css/style.css` is referenced everywhere but not created
 2. **Missing pages** - `contact.html` and `why.html` are linked but don't exist
 3. **Placeholder links** - Education "Read More" links and resource downloads point to `#`
-4. **Social media URLs** - Footer social links need real URLs
+4. **Social media URLs** - Footer social links point to generic `https://www.linkedin.com/` and `https://www.facebook.com/` (need real profile URLs)
 5. **No images/favicon** - No visual assets exist in the repo
 6. **No `.gitignore`** - Should be added if tooling or dependencies are introduced
+7. **Stray text in services.html** - Line 1 contains `services.html` before the `<!DOCTYPE html>` declaration; this should be removed
+8. **Missing active class on index.html** - Home nav link lacks `class="active"` unlike other pages
